@@ -6,10 +6,8 @@ import {
 export function selectNetwork (chainID:any, type?: any) {
   return new Promise(resolve => {
     const { ethereum } = window
-    const ethereumFN:any = {
-      request: '',
-      ...ethereum
-    }
+    const ethereumFN: any = ethereum
+  
     window.localStorage.setItem(ENV_NODE_CONFIG, chainInfo[chainID].label)
     if (ethereumFN && ethereumFN.request) {
       // console.log(ethereumFN)
@@ -31,13 +29,8 @@ export function selectNetwork (chainID:any, type?: any) {
           }
         ],
       }
-      // console.log(data)
+
       ethereumFN.request(data).then((res: any) => {
-        // console.log(chainID)
-        console.log(res)
-        if (!type) {
-          history.go(0)
-        }
         resolve({
           msg: 'Success'
         })
